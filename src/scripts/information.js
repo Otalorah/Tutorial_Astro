@@ -8,5 +8,5 @@ export const identity = {
 export const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Python"];
 
 export const happy = true;
-export const finished = false;
+export const finished = true;
 export const goal = 1;

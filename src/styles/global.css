@@ -62,7 +62,19 @@ html {
 .expanded {
   display: unset;
 }
+/* Tema oscuro */
+html.dark {
+  background-color: #0d0950;
+  color: #fff;
 
+  body{
+    background-color: #454545;
+  }
+}
+
+.dark .nav-links a {
+  color: #fff;
+}
 @media screen and (min-width: 700px) {
   body{
     margin: 1rem auto;
