@@ -1,87 +1,50 @@
 ---
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const pageTitle = "Sobre mi";
 
-const identity = {
-    firstName: "Juan",
-    country: "Colombia",
-    occupation: "Estudiantte",
-    hobbies: ["programar", "observación de aves", "peñarol"],
-};
-
-const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Python"];
-
-const happy = true;
-const finished = false;
-const goal = 1;
-
-const skillColor = "navy";
+import {
+    identity,
+    skills,
+    happy,
+    finished,
+    goal,
+} from "../scripts/information.js";
 ---
 
-<html lang="es">
-    <head>
-        <meta charset="utf-8" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <meta name="viewport" content="width=device-width" />
-        <meta name="generator" content={Astro.generator} />
-        <title>{pageTitle}</title>
-        <style define:vars={{ skillColor }}>
-            h1 {
-                color: purple;
-                font-size: 4rem;
-            }
-            .skill {
-                color: var(--skillColor);
-                font-weight: bold;
-            }
-        </style>
-    </head>
-    <body>
-        <Header />
-
-        <h1>{pageTitle}</h1>
-        <p>
-            Soy un joven que se interesa por el mundo de la programación y
-            tecnología
-        </p>
-        <p>He aquí algunos datos sobre mí:</p>
-        <ul>
-            <li>Me llamo {identity.firstName}.</li>
-            <li>
-                Vivo en {identity.country} y actualmente soy {
-                    identity.occupation
-                }.
-            </li>
-            {
-                identity.hobbies.length >= 2 && (
-                    <li>
-                        Dos de mis aficiones son: {identity.hobbies[0]} y{" "}
-                        {identity.hobbies[1]}
-                    </li>
-                )
-            }
-        </ul>
-        <p>Mis habilidades son:</p>
-        <ul>
-            {skills.map((skill) => <li class="skill">{skill}</li>)}
-        </ul>
-        {happy && <p>¡Estoy feliz de aprender Astro!</p>}
-
-        {finished && <p>¡He terminado este tutorial!</p>}
-
+<BaseLayout pageTitle={pageTitle}>
+    <p>
+        Soy un joven que se interesa por el mundo de la programación y
+        tecnología
+    </p>
+    <p>He aquí algunos datos sobre mí:</p>
+    <ul>
+        <li>Me llamo {identity.firstName}.</li>
+        <li>
+            Vivo en {identity.country} y actualmente soy {identity.occupation}.
+        </li>
         {
-            goal === 1 ? (
-                <p>Mi objetivo es terminar en {goal} día.</p>
-            ) : (
-                <p>Mi objetivo no es un día.</p>
+            identity.hobbies.length >= 2 && (
+                <li>
+                    Dos de mis aficiones son: {identity.hobbies[0]} y{" "}
+                    {identity.hobbies[1]}
+                </li>
             )
         }
-        <Footer />
-        <script>
-            import "../scripts/menu.js";
-        </script>
-    </body>
-</html>
+    </ul>
+    <p>Mis habilidades son:</p>
+    <ul>
+        {skills.map((skill) => <li class="skill">{skill}</li>)}
+    </ul>
+    {happy && <p>¡Estoy feliz de aprender Astro!</p>}
+
+    {finished && <p>¡He terminado este tutorial!</p>}
+
+    {
+        goal === 1 ? (
+            <p>Mi objetivo es terminar en {goal} día.</p>
+        ) : (
+            <p>Mi objetivo no es un día.</p>
+        )
+    }
+</BaseLayout>
